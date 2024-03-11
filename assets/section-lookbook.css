@@ -1,0 +1,86 @@
+.lookbook .grid {
+    margin-bottom: 0;
+}
+
+.lookbook .grid__item {
+    position: relative;
+}
+
+.lookbook__content--bottom {
+    justify-content: flex-end;
+    align-self: flex-end;
+}
+
+.lookbook__content--top {
+    justify-content: flex-start;
+    align-self: flex-start;
+}
+
+.lookbook__media {
+    height: 10rem;
+}
+
+.image-with-text__text--container-small {
+    max-width: 330px;
+}
+
+@media (max-width: 768px) {
+    .image-with-text__text--container-small {
+        max-width: 80%;
+    }
+}
+
+@media (max-width: 468px) {
+    .image-with-text__text--container-small {
+        max-width: 100%;
+    }
+}
+
+.image-with-text__text--container-medium {
+    max-width: 700px;
+}
+
+.image-with-text__text--container-large {
+    max-width: 100%;
+}
+
+.price__container-lookbook .price__sale {
+    display: flex;
+    flex-direction: column;
+    line-height: 75%;
+}
+
+.product-list-popup-modal__product-text___title-block {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 5px;
+}
+
+.product-list-popup-modal__product-text___title {
+    margin: 0;
+}
+
+@media (max-width: 468px) {
+
+}
+
+.price__container-lookbook .price--large {
+    line-height: 100%;
+
+}
+
+.price__container-lookbook .price__sale .price-item--last {
+    color: #F17C75;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.price__container-lookbook .price__sale .price-item--regular {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.product-list-popup-modal__product-form .form__label {
+    display: none;
+}
