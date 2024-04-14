@@ -1,0 +1,24 @@
+.section-best-collection .best-collection_slider {
+    position: relative;
+    overflow: hidden;
+    margin: 0 20px;
+}
+.section-best-collection .best-collection_title {
+    width: -webkit-max-content;
+    width: -moz-max-content;
+    width: max-content;
+    margin: 10px auto;
+    padding: 10px 25px;
+}
+.section-best-collection .best-collection_footer {
+    text-align: center;
+}
+.section-best-collection .best-collection_footer-text {
+    font-size: 22px;
+}
+.section-best-collection .section-best-collection .btn-link {
+    text-decoration: none;
+}
+.section-best-collection .section-best-collection .btn-link:hover {
+    text-decoration: none;
+}

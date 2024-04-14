@@ -1,0 +1,163 @@
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+{{ 'quick-add.css' | asset_url | stylesheet_tag }}
+{{ 'swiper.min.css' | asset_url | stylesheet_tag }}
+{{ 'best-collection.css' | asset_url | stylesheet_tag }}
+
+<script src="{{ 'swiper.min.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'best-collection.js' | asset_url }}" defer="defer"></script>
+
+{%- style -%}
+    .section-{{ section.id }} .best-collection_title {
+        color: {{ section.settings.title_color }};
+        background-color: {{ section.settings.title_background_color }};
+    }
+
+    .section-{{ section.id }} .swiper-button {
+        color: {{ section.settings.btn_color }};
+    }
+{%- endstyle -%}
+
+<div class="section-best-collection section-{{ section.id }}">
+    {% if section.settings.title != blank %}
+        <div class="best-collection_header">
+            <h2 class="best-collection_title">{{ section.settings.title }}</h2>
+        </div>
+    {% endif %}
+    <div class="best-collection_slider swiper-slider">
+        <div class="swiper-button swiper-button-prev"> </div>
+        <div class="swiper-wrapper">
+            {%- for product in section.settings.product_list -%}
+                <div class="best-collection_slide swiper-slide">
+                    {% render 'card-product-bc',
+                            card_product: product,
+                            show_quick_add: true,
+                            section_id: section.id
+                    %}
+                </div>
+            {%- endfor -%}
+        </div>
+        <div class="swiper-button swiper-button-next"> </div>
+    </div>
+    {% if section.settings.text_under != blank %}
+        <div class="best-collection_footer">
+            <span class="best-collection_footer-text">{{ section.settings.text_under }}</span>
+        </div>
+    {% endif %}
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        let swiper = new Swiper('.swiper-slider', {
+            breakpoints: {
+                480: {
+                    slidesPerView: 2
+                },
+                768: {
+                    slidesPerView: 3
+                },
+                989: {
+                    slidesPerView: 4
+                }
+            },
+
+            loop: true,
+            spaceBetween: '15px',
+
+            {% if section.settings.slider_speed > 0 %}
+                autoplay: {
+                    delay: {{ section.settings.slider_speed }}000,
+                    pauseOnMouseEnter: true
+                },
+            {% endif %}
+
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
+    });
+</script>
+
+{% schema %}
+{
+  "name": "Best collection",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": [
+      "header",
+      "footer"
+    ]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Title"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Best collection"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "title_background_color",
+      "label": "Title background",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Products"
+    },
+    {
+      "type": "product_list",
+      "id": "product_list",
+      "label": "Products",
+      "limit": 12
+    },
+    {
+      "type": "header",
+      "content": "Slider"
+    },
+    {
+      "type": "color",
+      "id": "btn_color",
+      "label": "Slider button color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "slider_speed",
+      "min": 0,
+      "max": 24,
+      "step": 1,
+      "unit": "s",
+      "label": "Slider autoplay speed",
+      "default": 3
+    },
+    {
+      "type": "header",
+      "content": "Section footer"
+    },
+    {
+      "type": "textarea",
+      "id": "text_under",
+      "label": "Text under section",
+      "default": "Summer 2024"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Best collection"
+    }
+  ]
+}
+{% endschema %}
